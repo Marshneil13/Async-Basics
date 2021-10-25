@@ -37,10 +37,34 @@ console.log("I am at the end of the file.");
 //     },1000)
 // },1000)
 
-const delayedColorChange = (newColor, delay) => {
+const delayedColorChange = (newColor, delay, doNext) => {
     setTimeout(() => {
         document.body.style.backgroundColor = newColor;
+        doNext();
     },delay)
 }
+
+delayedColorChange('red',1000, ()=>{
+    delayedColorChange('orange',1000, ()=>{
+         delayedColorChange('yellow',1000, ()=>{
+             delayedColorChange('green',1000, ()=>{
+                 delayedColorChange('blue',1000, ()=>{
+        
+                })
+            })
+        })
+    })
+})
+
+// Eg. of an Asynchronous operation using callbacks
+searchMoviesAPI('amadeus',() => {
+    saveToMyDB(movies, () => {
+        // if it works run this
+    }, () => {
+        // if it doesn't work run this
+    })
+}, () => {
+    //if API is down or request failed
+})
 
 
